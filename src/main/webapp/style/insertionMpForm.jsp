@@ -21,10 +21,10 @@
                             <%= request.getAttribute("error") %>
                         </p>
                         <% } %>
-                        <form method="post" action="${pageContext.request.contextPath}/style/insertion-matiere-premiere">
+                        <form method="post" action="${pageContext.request.contextPath}/style/insertion-matiere-premiere" id="form">
                             <div class="mb-3">
                                 <label class="form-label">Matière première</label>
-                                <select name="idMatierePremiere" class="form-control">
+                                <select name="idMatierePremiere" class="form-control" required>
                                     <% for(MatierePremiere mp: (List<MatierePremiere>)request.getAttribute("matierePremiereList")) { %>
                                     <option value="<%= mp.getId() %>">
                                         <%= mp.getNom() %>
@@ -34,7 +34,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Style</label>
-                                <select name="idStyle" class="form-control">
+                                <select name="idStyle" class="form-control" required>
                                     <% for(Style style: (List<Style>)request.getAttribute("styleList")) { %>
                                     <option value="<%= style.getId() %>">
                                         <%= style.getNom() %>

@@ -23,6 +23,7 @@ public class Style extends GenericDAO {
     }
 
     public static List<MatierePremiere> getMatierePremierePossible(DBConnection dbConnection, String idStyle) throws ValidationException, SQLException {
+
         String sql = "SELECT * FROM style_mp WHERE id_style = ?";
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
         preparedStatement.setString(1, idStyle);

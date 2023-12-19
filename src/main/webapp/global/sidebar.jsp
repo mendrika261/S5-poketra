@@ -96,6 +96,34 @@
           </li>
         </ul>
       </li>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
+                <span class="icon-holder">
+                    <i class="c-purple-500 ti-palette"></i>
+                  </span>
+          <span class="title">Modeles</span>
+          <span class="arrow">
+            <i class="ti-angle-right"></i>
+          </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="${pageContext.request.contextPath}/modele/insertion">Add modele</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/modele_format/insertion">Add format</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/modele_mpModele/insertion">Add mp modele</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/liste/produit">See list</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

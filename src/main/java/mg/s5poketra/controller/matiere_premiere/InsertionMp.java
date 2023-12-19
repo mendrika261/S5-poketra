@@ -25,6 +25,7 @@ public class InsertionMp extends HttpServlet {
         try {
             dbConnection = DaoConfig.DATABASE.createConnection();
             req.setAttribute("uniteList", new Unite().getAll(dbConnection));
+
         } catch (SQLException | InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
             req.setAttribute("error",  "Erreur lors de la récuperation de donnée");
             dbConnection.rollback();

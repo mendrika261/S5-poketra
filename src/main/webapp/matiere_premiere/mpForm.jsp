@@ -20,14 +20,14 @@
                             <%= request.getAttribute("error") %>
                         </p>
                         <% } %>
-                        <form method="post" action="${pageContext.request.contextPath}/matiere_premiere/insertion">
+                        <form method="post" action="${pageContext.request.contextPath}/matiere_premiere/insertion" id="form">
                             <div class="mb-3">
                                 <label class="form-label">Nom de la matière</label>
-                                <input type="text" placeholder="ex: cuir" name="nom" class="form-control">
+                                <input type="text" placeholder="ex: cuir" name="nom" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Unité</label>
-                                <select name="idUnite" class="form-control form-select">
+                                <select name="idUnite" class="form-control form-select" required>
                                     <% for(Unite unite: (List<Unite>)request.getAttribute("uniteList")) { %>
                                     <option value="<%= unite.getId() %>">
                                         <%= unite.getNom() %>

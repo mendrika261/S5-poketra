@@ -10,6 +10,9 @@ import mg.s5poketra.model.MPStyle;
 import mg.s5poketra.model.MatierePremiere;
 import mg.s5poketra.model.Style;
 import mg.s5poketra.model.Unite;
+import mg.s5poketra.model.produit.Format;
+import mg.s5poketra.model.produit.Modele;
+import mg.s5poketra.model.produit.MpModele;
 
 import java.sql.SQLException;
 
@@ -25,7 +28,7 @@ public class DaoConfig {
         dbConnection.close();
     }
 
-    public static void createTables(DBConnection dbConnection) throws SQLException, AttributeTypeNotExistingException, AttributeMissingException {
+    public static void createTables(DBConnection dbConnection) throws SQLException, AttributeTypeNotExistingException, AttributeMissingException, ValidationException {
         dbConnection.getDatabase().createSequenceFunction(dbConnection.getConnection());
 
         Unite unite = new Unite();
@@ -39,5 +42,15 @@ public class DaoConfig {
 
         MPStyle mpStyle = new MPStyle();
         mpStyle.createTable(dbConnection);
+
+        Modele modele = new Modele();
+        modele.createTable(dbConnection);
+
+        Format format = new Format();
+        format.createTable(dbConnection);
+
+        MpModele mpModele = new MpModele();
+        mpModele.createTable(dbConnection);
+
     }
 }

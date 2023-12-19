@@ -18,10 +18,10 @@
                             <%= request.getAttribute("error") %>
                         </p>
                         <% } %>
-                        <form method="post" action="${pageContext.request.contextPath}/style/insertion">
+                        <form method="post" action="${pageContext.request.contextPath}/style/insertion" id="form">
                             <div class="mb-3">
                                 <label class="form-label">Nom du style</label>
-                                <input type="text" placeholder="ex: luxe" name="nom" class="form-control">
+                                <input type="text" placeholder="ex: luxe" name="nom" class="form-control" required>
                             </div>
                             <div>
                                 <input type="submit" value="Insérer" class="btn btn-color btn-success">
