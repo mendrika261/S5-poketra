@@ -52,6 +52,8 @@
             }
         }
     </style>
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/r-2.5.0/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.8/r-2.5.0/datatables.min.js"></script>
     <script defer="defer" src="${pageContext.request.contextPath}/assets/main.js"></script>
     <link href="${pageContext.request.contextPath}/assets/style.css" rel="stylesheet">
 </head>

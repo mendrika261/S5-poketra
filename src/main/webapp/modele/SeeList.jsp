@@ -37,22 +37,46 @@
                         </form>
                     </div>
                 </div>
+                <% if(request.getAttribute("matiere_premiere")!=null) { %>
                 <div class="row">
-                    <% if(request.getAttribute("matiere_premiere")!=null) { %>
-                    <h3 class="text-uppercase"><%= ((MatierePremiere)request.getAttribute("matiere_premiere")).getNom() %></h3>
-                    <% } %>
-                    <div class="col-12">
-                        <% if(request.getAttribute("modelViewList")!=null) { %>
-                        <ul>
-                            <% for(MpModelView mpModelView: (List<MpModelView>)request.getAttribute("modelViewList")) { %>
-                            <li><%= mpModelView.getNomModele() %> - <%= mpModelView.getNomFormat() %> (<%= mpModelView.getNomStyle() %>): <%= mpModelView.getQuantite() %></li>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="c-grey-900 mB-20">Matière première: <%= ((MatierePremiere)request.getAttribute("matiere_premiere")).getNom() %></h4>
+                            <% if(request.getAttribute("modelViewList")!=null) { %>
+                            <table id="table" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Modèle</th>
+                                        <th>Format</th>
+                                        <th>Style</th>
+                                        <th>Quantité</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(MpModelView mpModelView: (List<MpModelView>)request.getAttribute("modelViewList")) { %>
+                                    <tr>
+                                        <td><%= mpModelView.getNomModele() %></td>
+                                        <td><%= mpModelView.getNomFormat() %></td>
+                                        <td><%= mpModelView.getNomStyle() %></td>
+                                        <td><%= mpModelView.getQuantite() %></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Modèle</th>
+                                        <th>Format</th>
+                                        <th>Style</th>
+                                        <th>Quantité</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <p>Fin de la liste <%= ((List<?>)request.getAttribute("modelViewList")).size() %> résultat(s)</p>
                             <% } %>
-                        </ul>
-                        <br>
-                        <p>Fin de la liste <%= ((List<?>)request.getAttribute("modelViewList")).size() %> résultat(s)</p>
-                        <% } %>
+                        </div>
                     </div>
                 </div>
+                <% } %>
             </div>
         </main>
         <%@include file="/global/footer.jsp"%>

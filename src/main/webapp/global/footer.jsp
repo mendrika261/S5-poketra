@@ -11,19 +11,25 @@
 <script src="${pageContext.request.contextPath}/assets/jquery-validation/localization/messages_fr.min.js"></script>
 
 <script>
-    $(function() {
+    $(function () {
         $('#form').validate({
             errorElement: 'span',
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
                 element.closest('div').append(error);
             },
-            highlight: function(element, errorClass, validClass) {
+            highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
             },
-            unhighlight: function(element, errorClass, validClass) {
+            unhighlight: function (element, errorClass, validClass) {
                 $(element).removeClass('is-invalid');
             }
+        });
+
+        var table = new DataTable('#table', {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/fr-FR.json',
+            },
         });
     });
 </script>
