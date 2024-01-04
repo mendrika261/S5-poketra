@@ -96,6 +96,34 @@
           </li>
         </ul>
       </li>
+
+
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
+                <span class="icon-holder">
+                    <i class="c-purple-500 ti-shopping-cart"></i>
+                  </span>
+          <span class="title">Modèles</span>
+          <span class="arrow">
+            <i class="ti-angle-right"></i>
+          </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="${pageContext.request.contextPath}/modele/insertion">Insertion modèle</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/modele_format/insertion">Insertion format</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/modele_mpModele/insertion">Insertion matière première</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/liste/produit">Liste par matière première</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

@@ -33,7 +33,7 @@ public class Style extends GenericDAO {
         while (resultSet.next()) {
             matierePremiere = new MatierePremiere();
             matierePremiere.setId(resultSet.getString("id_mp"));
-            matierePremiere.setNom(resultSet.getString("nom"));
+            matierePremiere.setNom(resultSet.getString("nom_mp"));
             matierePremieres.add(matierePremiere);
         }
         resultSet.close();

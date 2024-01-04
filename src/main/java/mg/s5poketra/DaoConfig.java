@@ -10,6 +10,9 @@ import mg.s5poketra.model.MPStyle;
 import mg.s5poketra.model.MatierePremiere;
 import mg.s5poketra.model.Style;
 import mg.s5poketra.model.Unite;
+import mg.s5poketra.model.produit.Format;
+import mg.s5poketra.model.produit.Modele;
+import mg.s5poketra.model.produit.MpModele;
 
 import java.sql.SQLException;
 
@@ -25,7 +28,7 @@ public class DaoConfig {
         dbConnection.close();
     }
 
-    public static void createTables(DBConnection dbConnection) throws SQLException, AttributeTypeNotExistingException, AttributeMissingException {
+    public static void createTables(DBConnection dbConnection) throws SQLException, AttributeTypeNotExistingException, AttributeMissingException, ValidationException {
         dbConnection.getDatabase().createSequenceFunction(dbConnection.getConnection());
 
         Unite unite = new Unite();
@@ -39,5 +42,21 @@ public class DaoConfig {
 
         MPStyle mpStyle = new MPStyle();
         mpStyle.createTable(dbConnection);
+
+        Modele modele = new Modele();
+        modele.createTable(dbConnection);
+
+        Format format = new Format();
+        format.createTable(dbConnection);
+
+        MpModele mpModele = new MpModele();
+        mpModele.createTable(dbConnection);
+
+        dbConnection.getDatabase().execute(dbConnection.getConnection(),
+                "create view style_mp as select \"id_style\", \"idMatierePremiere\" id_mp, nom nom_mp from \"MPStyle\" JOIN \"MatierePremiere\" mp on \"idMatierePremiere\" = mp.id");
+
+        dbConnection.getDatabase().execute(dbConnection.getConnection(),
+                "create view v_liste as select m.id idModele, m.nom nom, f.id idFormat, f.nom nomFormat, mp.id idMatierePremiere, mp.nom nomMatierePremiere, mp.quantite quantite from \"Modele\" m JOIN \"Format\" f on m.\"idStyle\" = f.\"idModele\" JOIN \"MpModele\" mp on f.id = mp.\"idFormat\"");
+
     }
 }
