@@ -24,17 +24,9 @@ public class Modele extends GenericDAO {
     }
 
     public static List<MpModelView> getListeModele(DBConnection dbConnection, String idMatierePremiere) throws SQLException {
-        String sql = null;
-        if(idMatierePremiere != null){
-             sql = "SELECT * FROM v_liste WHERE \"idMatierePremiere\" = ?";
-        }
-        else {
-            sql = "SELECT * FROM v_liste";
-        }
+        String sql = "SELECT * FROM v_modele_mp WHERE \"idMatierePremiere\" = ?";
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
-        if(idMatierePremiere != null){
-            preparedStatement.setString(1, idMatierePremiere);
-        }
+        preparedStatement.setString(1, idMatierePremiere);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         List<MpModelView> mpModelViews = new ArrayList<>();
@@ -42,15 +34,14 @@ public class Modele extends GenericDAO {
         while (resultSet.next()) {
             mpModelView = new MpModelView();
 
-            mpModelView.setIdFormat(resultSet.getString("idFormat"));
-            mpModelView.setNomModele(resultSet.getString("nom"));
-            mpModelView.setNomFormat(resultSet.getString("nomFormat"));
-
-            if(idMatierePremiere != null) {
-                mpModelView.setQuantite(resultSet.getDouble("quantite"));
-                mpModelView.setIdModele(resultSet.getString("idModele"));
-                mpModelView.setIdMatierePremiere(resultSet.getString("idMatierePremiere"));
-            }
+            mpModelView.setIdFormat(resultSet.getString("id_format"));
+            mpModelView.setNomModele(resultSet.getString("nom_modele"));
+            mpModelView.setNomFormat(resultSet.getString("nom_format"));
+            mpModelView.setIdStyle(resultSet.getString("id_style"));
+            mpModelView.setNomStyle(resultSet.getString("nom_style"));
+            mpModelView.setQuantite(resultSet.getDouble("quantite"));
+            mpModelView.setIdModele(resultSet.getString("id_modele"));
+            mpModelView.setIdMatierePremiere(resultSet.getString("idMatierePremiere"));
 
             mpModelViews.add(mpModelView);
         }

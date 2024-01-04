@@ -52,5 +52,11 @@ public class DaoConfig {
         MpModele mpModele = new MpModele();
         mpModele.createTable(dbConnection);
 
+        dbConnection.getDatabase().execute(dbConnection.getConnection(),
+                "create view style_mp as select \"id_style\", \"idMatierePremiere\" id_mp, nom nom_mp from \"MPStyle\" JOIN \"MatierePremiere\" mp on \"idMatierePremiere\" = mp.id");
+
+        dbConnection.getDatabase().execute(dbConnection.getConnection(),
+                "create view v_liste as select m.id idModele, m.nom nom, f.id idFormat, f.nom nomFormat, mp.id idMatierePremiere, mp.nom nomMatierePremiere, mp.quantite quantite from \"Modele\" m JOIN \"Format\" f on m.\"idStyle\" = f.\"idModele\" JOIN \"MpModele\" mp on f.id = mp.\"idFormat\"");
+
     }
 }

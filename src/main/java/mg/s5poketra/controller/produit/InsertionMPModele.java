@@ -1,6 +1,7 @@
 package mg.s5poketra.controller.produit;
 
 import database.core.DBConnection;
+import database.exception.object.NotIdentifiedInDatabaseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,7 +29,7 @@ public class InsertionMPModele extends HttpServlet {
 
         try {
             dbConnection = DaoConfig.DATABASE.createConnection();
-            req.setAttribute("modeleList", Modele.getListeModele(dbConnection,null));
+            req.setAttribute("modeleList", Format.getListeModele(dbConnection));
             req.setAttribute("matiereList", new MatierePremiere().getAll(dbConnection));
 
 
@@ -48,23 +49,26 @@ public class InsertionMPModele extends HttpServlet {
         DBConnection dbConnection = null;
         try {
             dbConnection = DaoConfig.DATABASE.createConnection();
-            req.setAttribute("modeleList", Modele.getListeModele(dbConnection,null));
+            req.setAttribute("modeleList", Format.getListeModele(dbConnection));
             req.setAttribute("matiereList", new MatierePremiere().getAll(dbConnection));
 
 
             MpModele mpModele = new MpModele();
-            mpModele.setIdFormat(req.getParameter("idFormat"));
+
+            String[] idFormatAndStyle = req.getParameter("idFormat").split("-");
+
+            mpModele.setIdFormat(idFormatAndStyle[0]);
             mpModele.setIdMatierePremiere(req.getParameter("idMatiereP"));
             mpModele.setQuantite(Double.parseDouble(req.getParameter("quantite")));
 
-            mpModele.save(dbConnection);
+            mpModele.save(idFormatAndStyle[1], dbConnection);
 
             dbConnection.commit();
         } catch (ValidationException e) {
             req.setAttribute("error",  e.getMessage());
             dbConnection.rollback();
         } catch (SQLException | InvocationTargetException | NoSuchMethodException | IllegalAccessException |
-                 InstantiationException e) {
+                 InstantiationException | NotIdentifiedInDatabaseException e) {
             req.setAttribute("error",  "Erreur lors de l'ajout");
             dbConnection.rollback();
             e.printStackTrace();

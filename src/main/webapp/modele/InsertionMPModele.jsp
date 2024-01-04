@@ -1,10 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mg.s5poketra.model.Unite" %>
 <%@ page import="java.util.List" %>
-<%@ page import="mg.s5poketra.model.produit.Format" %>
 <%@ page import="mg.s5poketra.model.MatierePremiere" %>
 <%@ page import="mg.s5poketra.model.produit.MpModelView" %>
-<%@ page import="mg.s5poketra.model.produit.MpModele" %>
 
 <!doctype html>
 <html>
@@ -19,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h1>Insertion MP Modele</h1>
+                        <h1>Insertion matière première d'un modèle</h1>
                         <% if(request.getAttribute("error")!=null) { %>
                         <p class="text-danger">
                             <%= request.getAttribute("error") %>
@@ -31,8 +28,8 @@
                                 <label class="form-label">Modele</label>
                                 <select name="idFormat" class="form-control form-select" required>
                                     <% for(MpModelView format: (List<MpModelView>)request.getAttribute("modeleList")) { %>
-                                    <option value="<%= format.getIdFormat() %>">
-                                        <%= format.getNomModele() %> <%= format.getNomFormat() %>
+                                    <option value="<%= format.getIdFormat() %>-<%= format.getIdStyle() %>">
+                                        <%= format.getNomModele() %> - <%= format.getNomFormat() %> (<%= format.getNomStyle() %>)
                                     </option>
                                     <% } %>
                                 </select>

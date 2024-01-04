@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h1>Insertion modeles</h1>
+                        <h1>Insertion d'un modèle</h1>
                         <% if(request.getAttribute("error")!=null) { %>
                         <p class="text-danger">
                             <%= request.getAttribute("error") %>

@@ -7,6 +7,8 @@ public class MpModelView {
     String idModele;
     String nomModele;
     String nomFormat;
+    String nomStyle;
+    String idStyle;
 
     public String getNomFormat() {
         return nomFormat;
@@ -56,4 +58,19 @@ public class MpModelView {
         this.nomModele = nomModele;
     }
 
+    public String getNomStyle() {
+        return nomStyle;
+    }
+
+    public void setNomStyle(String nomStyle) {
+        this.nomStyle = nomStyle;
+    }
+
+    public String getIdStyle() {
+        return idStyle;
+    }
+
+    public void setIdStyle(String idStyle) {
+        this.idStyle = idStyle;
+    }
 }

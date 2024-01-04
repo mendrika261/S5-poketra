@@ -47,11 +47,12 @@ public class ListeProduit extends HttpServlet {
         DBConnection dbConnection = null;
         try {
             dbConnection = DaoConfig.DATABASE.createConnection();
-            req.setAttribute("modelViewList",Modele.getListeModele(dbConnection,req.getParameter("idMatierePremiere")));
+            req.setAttribute("matiere_premiere", new MatierePremiere().getById(dbConnection, req.getParameter("idMatierePremiere")));
+            req.setAttribute("modelViewList",Modele.getListeModele(dbConnection, req.getParameter("idMatierePremiere")));
             req.setAttribute("matiereList", new MatierePremiere().getAll(dbConnection));
         } catch (SQLException | InvocationTargetException | NoSuchMethodException | IllegalAccessException |
                  InstantiationException e) {
-            req.setAttribute("error",  "Erreur lors de l'ajout");
+            req.setAttribute("error",  "Erreur lors de la récuperation de donnée");
             dbConnection.rollback();
             e.printStackTrace();
         } finally {

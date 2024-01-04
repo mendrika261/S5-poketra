@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="mg.s5poketra.model.Unite" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mg.s5poketra.model.produit.Modele" %>
 
@@ -16,7 +15,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h1>Insertion Format Modele</h1>
+                        <h1>Insertion Format d'un modèle</h1>
                         <% if(request.getAttribute("error")!=null) { %>
                         <p class="text-danger">
                             <%= request.getAttribute("error") %>
