@@ -6,6 +6,7 @@ import mg.s5poketra.exception.ValidationException;
 public class MatierePremiere extends GenericDAO {
     String nom;
     String idUnite;
+    double prix;
 
     public MatierePremiere() {
     }
@@ -33,5 +34,15 @@ public class MatierePremiere extends GenericDAO {
         if (idUnite == null || idUnite.isEmpty())
             throw new ValidationException("L'identifiant de l'unité de la matière première ne peut pas être vide");
         this.idUnite = idUnite;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) throws ValidationException {
+        if (prix < 0)
+            throw new ValidationException("Le prix de la matière première ne peut pas être négatif");
+        this.prix = prix;
     }
 }

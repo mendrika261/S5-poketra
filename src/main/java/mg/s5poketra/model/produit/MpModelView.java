@@ -9,6 +9,15 @@ public class MpModelView {
     String nomFormat;
     String nomStyle;
     String idStyle;
+    Double prix;
+
+    public Double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Double prix) {
+        this.prix = prix;
+    }
 
     public String getNomFormat() {
         return nomFormat;

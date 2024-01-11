@@ -36,6 +36,10 @@
                                 </select>
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Prix unitaire</label>
+                                <input type="number" name="prix" class="form-control" step="0.01" min="0" required value="0">
+                            </div>
+                            <div class="mb-3">
                                 <input type="submit" value="Insérer" class="btn btn-success btn-color cur-p">
                             </div>
                         </form>

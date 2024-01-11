@@ -51,6 +51,32 @@ public class Modele extends GenericDAO {
         return mpModelViews;
     }
 
+    public static List<MpModelView> getListeModelParPrix(DBConnection dbConnection, double min, double max) throws SQLException {
+        String sql = "SELECT * FROM v_prix_format WHERE prix BETWEEN ? AND ?";
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
+        preparedStatement.setDouble(1, min);
+        preparedStatement.setDouble(2, max);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<MpModelView> mpModelViews = new ArrayList<>();
+        MpModelView mpModelView;
+        while (resultSet.next()) {
+            mpModelView = new MpModelView();
+
+            mpModelView.setIdFormat(resultSet.getString("id_format"));
+            mpModelView.setNomModele(resultSet.getString("nom_modele"));
+            mpModelView.setNomFormat(resultSet.getString("nom_format"));
+            mpModelView.setNomStyle(resultSet.getString("nom_style"));
+            mpModelView.setPrix(resultSet.getDouble("prix"));
+
+            mpModelViews.add(mpModelView);
+        }
+        resultSet.close();
+        preparedStatement.close();
+
+        return mpModelViews;
+    }
+
     public String getNom() {
         return nom;
     }

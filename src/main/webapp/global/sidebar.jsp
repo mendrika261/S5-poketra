@@ -122,6 +122,9 @@
           <li>
             <a href="${pageContext.request.contextPath}/liste/produit">Liste par matière première</a>
           </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/listeParPrix/produit">Liste par Prix</a>
+          </li>
         </ul>
       </li>
     </ul>
