@@ -51,6 +51,39 @@ public class Modele extends GenericDAO {
         return mpModelViews;
     }
 
+    public static List<MpModelView> getMatierePremiere(DBConnection dbConnection, String ids) throws SQLException {
+        String[] idA = ids.split("-");
+        String idFormat = idA[0];
+        String idStyle = idA[1];
+        String sql = "SELECT * FROM v_modele_mp WHERE \"idFormat\" = ? AND \"id_style\" = ?";
+        PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);
+        preparedStatement.setString(1, idFormat);
+        preparedStatement.setString(2, idStyle);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<MpModelView> mpModelViews = new ArrayList<>();
+        MpModelView mpModelView;
+        while (resultSet.next()) {
+            mpModelView = new MpModelView();
+
+            mpModelView.setIdFormat(resultSet.getString("id_format"));
+            mpModelView.setNomModele(resultSet.getString("nom_modele"));
+            mpModelView.setNomFormat(resultSet.getString("nom_format"));
+            mpModelView.setIdStyle(resultSet.getString("id_style"));
+            mpModelView.setNomStyle(resultSet.getString("nom_style"));
+            mpModelView.setQuantite(resultSet.getDouble("quantite"));
+            mpModelView.setIdModele(resultSet.getString("id_modele"));
+            mpModelView.setIdMatierePremiere(resultSet.getString("idMatierePremiere"));
+
+            mpModelViews.add(mpModelView);
+        }
+        resultSet.close();
+
+        preparedStatement.close();
+
+        return mpModelViews;
+    }
+
     public static List<MpModelView> getListeModelParPrix(DBConnection dbConnection, double min, double max) throws SQLException {
         String sql = "SELECT * FROM v_prix_format WHERE prix BETWEEN ? AND ?";
         PreparedStatement preparedStatement = dbConnection.getConnection().prepareStatement(sql);

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mg.s5poketra.model.produit.Modele" %>
+<%@ page import="mg.s5poketra.model.MatierePremiere" %>
 
 <!doctype html>
 <html>
@@ -15,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <h1>Insertion Format d'un modèle</h1>
+                        <h1>Entrée de stock</h1>
                         <% if(request.getAttribute("error")!=null) { %>
                         <p class="text-danger">
                             <%= request.getAttribute("error") %>
@@ -23,27 +24,23 @@
                         <% } %>
                         <form method="post"  id="form">
                             <div class="mb-3">
-                                <label class="form-label">Nom du Format</label>
-                                <input type="text" placeholder="ex: XL" name="nom" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Coefficient ouvrier</label>
-                                <input type="number" name="coefficient" class="form-control" value="0">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Modele</label>
-                                <select name="idModele" class="form-control form-select" required>
-                                    <% for(Modele modele: (List<Modele>)request.getAttribute("modeleList")) { %>
-                                    <option value="<%= modele.getId() %>">
-                                        <%= modele.getNom() %>
+                                <label class="form-label">Matière première</label>
+                                <select name="idMp" class="form-control form-select" required>
+                                    <% for(MatierePremiere mp: (List<MatierePremiere>)request.getAttribute("mpList")) { %>
+                                    <option value="<%= mp.getId() %>">
+                                        <%= mp.getNom() %>
                                     </option>
                                     <% } %>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Prix de Vente</label>
-                                <input type="number" name="prixVente" class="form-control" value="0">
+                                <label class="form-label">Quantité</label>
+                                <input type="number" value="0" name="quantite" class="form-control" required step="0.02" min="0">
                             </div>
+                            <!--<div class="mb-3">
+                                <label class="form-label">Date</label>
+                                <input type="datetime-local" name="date" class="form-control" required>
+                            </div>-->
                             <div class="mb-3">
                                 <input type="submit" value="Insérer" class="btn btn-success btn-color cur-p">
                             </div>
