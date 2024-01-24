@@ -122,6 +122,42 @@
           <li>
             <a href="${pageContext.request.contextPath}/liste/produit">Liste par matière première</a>
           </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/listeParPrix/produit">Liste par Prix</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
+                <span class="icon-holder">
+                    <i class="c-purple-500 ti-blackboard"></i>
+                  </span>
+          <span class="title">Fabrication</span>
+          <span class="arrow">
+            <i class="ti-angle-right"></i>
+          </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="${pageContext.request.contextPath}/stock/entree">Entrée de stock</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/stock/sortie">Sortie de stock</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/stock/etat">Etat de stock</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/service/insertion">Insertion Service</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/service/insertionParProduit">Insertion Service Par Produit</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/listeServiceDetails/produit">Lister Details par benefice</a>
+          </li>
+
         </ul>
       </li>
     </ul>

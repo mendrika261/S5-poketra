@@ -13,6 +13,29 @@ import java.util.List;
 public class Format extends GenericDAO {
    String nomFormat;
    String idModele;
+   double coefficient;
+
+   double prixVente;
+
+    public double getPrixVente() {
+        return prixVente;
+    }
+
+    public void setPrixVente(double prixVente) throws ValidationException {
+        if (prixVente < 0)
+            throw new ValidationException("Le prix de vente ne peut pas être négatif");
+        this.prixVente = prixVente;
+    }
+
+    public double getCoefficient() {
+        return coefficient;
+    }
+
+    public void setCoefficient(double coefficient) throws ValidationException {
+        if (coefficient < 0)
+            throw new ValidationException("Le coefficient ne peut pas être négatif");
+        this.coefficient = coefficient;
+    }
 
     public Format() {
     }
@@ -67,4 +90,6 @@ public class Format extends GenericDAO {
         this.setNomFormat(nomFormat);
         this.setIdModele(idModele);
     }
+
+
 }

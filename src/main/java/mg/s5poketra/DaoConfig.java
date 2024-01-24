@@ -5,6 +5,9 @@ import database.core.Database;
 import database.exception.SQL.AttributeMissingException;
 import database.exception.SQL.AttributeTypeNotExistingException;
 import database.provider.PostgreSQL;
+import mg.s5poketra.model.service.Service;
+import mg.s5poketra.model.service.ServiceParProduit;
+import mg.s5poketra.model.stock.MouvementStock;
 import mg.s5poketra.exception.ValidationException;
 import mg.s5poketra.model.MPStyle;
 import mg.s5poketra.model.MatierePremiere;
@@ -52,11 +55,19 @@ public class DaoConfig {
         MpModele mpModele = new MpModele();
         mpModele.createTable(dbConnection);
 
-        dbConnection.getDatabase().execute(dbConnection.getConnection(),
+        /*dbConnection.getDatabase().execute(dbConnection.getConnection(),
                 "create view style_mp as select \"id_style\", \"idMatierePremiere\" id_mp, nom nom_mp from \"MPStyle\" JOIN \"MatierePremiere\" mp on \"idMatierePremiere\" = mp.id");
 
         dbConnection.getDatabase().execute(dbConnection.getConnection(),
                 "create view v_liste as select m.id idModele, m.nom nom, f.id idFormat, f.nom nomFormat, mp.id idMatierePremiere, mp.nom nomMatierePremiere, mp.quantite quantite from \"Modele\" m JOIN \"Format\" f on m.\"idStyle\" = f.\"idModele\" JOIN \"MpModele\" mp on f.id = mp.\"idFormat\"");
+         */
+        MouvementStock mouvementStock = new MouvementStock();
+        mouvementStock.createTable(dbConnection);
 
+        Service service = new Service();
+        service.createTable(dbConnection);
+
+        ServiceParProduit serviceParProduit = new ServiceParProduit();
+        serviceParProduit.createTable(dbConnection);
     }
 }

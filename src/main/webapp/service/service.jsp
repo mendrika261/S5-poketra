@@ -14,30 +14,20 @@
             <div id="mainContent">
                 <div class="row">
                     <div class="col-4">
-                        <h1>Insertion matière première</h1>
+                        <h1>Insertion service</h1>
                         <% if(request.getAttribute("error")!=null) { %>
                         <p class="text-danger">
                             <%= request.getAttribute("error") %>
                         </p>
                         <% } %>
-                        <form method="post" action="${pageContext.request.contextPath}/matiere_premiere/insertion" id="form">
+                        <form method="post" action="${pageContext.request.contextPath}/service/insertion" id="form">
                             <div class="mb-3">
-                                <label class="form-label">Nom de la matière</label>
-                                <input type="text" placeholder="ex: cuir" name="nom" class="form-control" required>
+                                <label class="form-label">Nom du service</label>
+                                <input type="text" placeholder="ex: transport" name="nomService" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Unité</label>
-                                <select name="idUnite" class="form-control form-select" required>
-                                    <% for(Unite unite: (List<Unite>)request.getAttribute("uniteList")) { %>
-                                    <option value="<%= unite.getId() %>">
-                                        <%= unite.getNom() %>
-                                    </option>
-                                    <% } %>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Prix unitaire</label>
-                                <input type="number" name="prix" class="form-control" step="0.01" min="0" required value="0">
+                                <label class="form-label">prix Horaire</label>
+                                <input type="number" name="prixHoraire" class="form-control" step="0.01" min="0" required value="0">
                             </div>
                             <div class="mb-3">
                                 <input type="submit" value="Insérer" class="btn btn-success btn-color cur-p">
