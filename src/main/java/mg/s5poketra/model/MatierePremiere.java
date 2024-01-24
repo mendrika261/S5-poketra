@@ -4,45 +4,42 @@ import database.core.GenericDAO;
 import mg.s5poketra.exception.ValidationException;
 
 public class MatierePremiere extends GenericDAO {
-    String nom;
-    String idUnite;
-    double prix;
+  String nom;
+  String idUnite;
+  double prix;
 
-    public MatierePremiere() {
-    }
+  public MatierePremiere() {}
 
-    public MatierePremiere(String nom, String idUnite) throws ValidationException {
-        setNom(nom);
-        setIdUnite(idUnite);
-    }
+  public MatierePremiere(String nom, String idUnite)
+      throws ValidationException {
+    setNom(nom);
+    setIdUnite(idUnite);
+  }
 
-    public String getNom() {
-        return nom;
-    }
+  public String getNom() { return nom; }
 
-    public void setNom(String nom) throws ValidationException {
-        if (nom == null || nom.isEmpty())
-            throw new ValidationException("Le nom de la matière première ne peut pas être vide");
-        this.nom = nom;
-    }
+  public void setNom(String nom) throws ValidationException {
+    if (nom == null || nom.isEmpty())
+      throw new ValidationException(
+          "Le nom de la matière première ne peut pas être vide");
+    this.nom = nom;
+  }
 
-    public String getIdUnite() {
-        return idUnite;
-    }
+  public String getIdUnite() { return idUnite; }
 
-    public void setIdUnite(String idUnite) throws ValidationException {
-        if (idUnite == null || idUnite.isEmpty())
-            throw new ValidationException("L'identifiant de l'unité de la matière première ne peut pas être vide");
-        this.idUnite = idUnite;
-    }
+  public void setIdUnite(String idUnite) throws ValidationException {
+    if (idUnite == null || idUnite.isEmpty())
+      throw new ValidationException(
+          "L'identifiant de l'unité de la matière première ne peut pas être vide");
+    this.idUnite = idUnite;
+  }
 
-    public double getPrix() {
-        return prix;
-    }
+  public double getPrix() { return prix; }
 
-    public void setPrix(double prix) throws ValidationException {
-        if (prix < 0)
-            throw new ValidationException("Le prix de la matière première ne peut pas être négatif");
-        this.prix = prix;
-    }
+  public void setPrix(double prix) throws ValidationException {
+    if (prix < 0)
+      throw new ValidationException(
+          "Le prix de la matière première ne peut pas être négatif");
+    this.prix = prix;
+  }
 }
