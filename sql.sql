@@ -149,4 +149,3 @@ FROM
     JOIN "Format" ON "Format".id = v_cout_mp_produit.id_format
     JOIN "Modele" ON "Modele".id = "Format"."idModele"
     JOIN "Style" ON "Style".id = "Modele"."idStyle";
-
