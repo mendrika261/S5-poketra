@@ -5,6 +5,9 @@ import database.core.Database;
 import database.exception.SQL.AttributeMissingException;
 import database.exception.SQL.AttributeTypeNotExistingException;
 import database.provider.PostgreSQL;
+import mg.s5poketra.model.personnel.Affectation;
+import mg.s5poketra.model.personnel.Poste;
+import mg.s5poketra.model.personnel.Personnel;
 import mg.s5poketra.model.service.Service;
 import mg.s5poketra.model.service.ServiceParProduit;
 import mg.s5poketra.model.stock.MouvementStock;
@@ -69,5 +72,15 @@ public class DaoConfig {
 
         ServiceParProduit serviceParProduit = new ServiceParProduit();
         serviceParProduit.createTable(dbConnection);
+
+        Poste poste = new Poste();
+        poste.createTable(dbConnection);
+
+        Personnel personnel = new Personnel();
+        personnel.createTable(dbConnection);
+
+        Affectation affectation = new Affectation();
+        affectation.createTable(dbConnection);
+
     }
 }

@@ -160,6 +160,33 @@
 
         </ul>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="dropdown-toggle" href="javascript:void(0);">
+                <span class="icon-holder">
+                    <i class="c-purple-500 ti-palette"></i>
+                  </span>
+          <span class="title">Personnel</span>
+          <span class="arrow">
+            <i class="ti-angle-right"></i>
+          </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="${pageContext.request.contextPath}/personnel/poste">Inserer Poste</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/personnel/personnel">Inserer Personnel</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/personnel/affectation">Inserer Affectation</a>
+          </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/personnel/listePersonnel">Liste Personnel</a>
+          </li>
+
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

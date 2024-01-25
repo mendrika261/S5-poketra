@@ -1,4 +1,4 @@
-package mg.s5poketra.controller.matiere_premiere;
+package mg.s5poketra.controller.personnel;
 
 import database.core.DBConnection;
 import jakarta.servlet.ServletException;
@@ -9,27 +9,37 @@ import jakarta.servlet.http.HttpServletResponse;
 import mg.s5poketra.DaoConfig;
 import mg.s5poketra.exception.ValidationException;
 import mg.s5poketra.model.MatierePremiere;
+import mg.s5poketra.model.Style;
 import mg.s5poketra.model.Unite;
+import mg.s5poketra.model.personnel.Affectation;
+import mg.s5poketra.model.personnel.Personnel;
+import mg.s5poketra.model.personnel.Poste;
+import mg.s5poketra.model.produit.Format;
+import mg.s5poketra.model.produit.Modele;
+import mg.s5poketra.model.service.Service;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
-@WebServlet("/matiere_premiere/insertion")
-public class InsertionMp extends HttpServlet {
-    final String FORM = "/matiere_premiere/mpForm.jsp";
+@WebServlet("/personnel/affectation")
+public class InsertAffectation extends HttpServlet {
+    final String FORM = "/personnel/Affectation.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBConnection dbConnection = null;
 
         try {
             dbConnection = DaoConfig.DATABASE.createConnection();
-            req.setAttribute("uniteList", new Unite().getAll(dbConnection));
-
-        } catch (SQLException | InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+            req.setAttribute("serviceList", new Service().getAll(dbConnection));
+            req.setAttribute("personnelList", new Personnel().getAll(dbConnection));
+        } catch (SQLException e) {
             req.setAttribute("error",  "Erreur lors de la récuperation de donnée");
             dbConnection.rollback();
             e.printStackTrace();
+        } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
         } finally {
             dbConnection.close();
         }
@@ -41,27 +51,30 @@ public class InsertionMp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DBConnection dbConnection = null;
         try {
+            System.out.println("doPost");
             dbConnection = DaoConfig.DATABASE.createConnection();
-            req.setAttribute("uniteList", new Unite().getAll(dbConnection));
+            req.setAttribute("serviceList", new Service().getAll(dbConnection));
+            req.setAttribute("personnelList", new Personnel().getAll(dbConnection));
 
-
-            MatierePremiere matierePremiere = new MatierePremiere();
-            matierePremiere.setNom(req.getParameter("nom"));
-            matierePremiere.setIdUnite(req.getParameter("idUnite"));
-            matierePremiere.setPrix(Double.parseDouble(req.getParameter("prix")));
-            matierePremiere.save(dbConnection);
+            Affectation affectation = new Affectation();
+            affectation.setIdPersonnel(req.getParameter("idPersonnel"));
+            affectation.setIdservice(req.getParameter("idService"));
+            affectation.setDateAffectation(LocalDate.parse(req.getParameter("dateAffectation")));
+            affectation.save(dbConnection);
 
             dbConnection.commit();
-        } catch (ValidationException e) {
+        /*} catch (ValidationException e) {
             req.setAttribute("error",  e.getMessage());
-            dbConnection.rollback();
+            dbConnection.rollback();*/
         } catch (SQLException | InvocationTargetException | NoSuchMethodException | IllegalAccessException |
-                 InstantiationException e) {
+                InstantiationException | ValidationException e) {
             req.setAttribute("error",  "Erreur lors de l'ajout");
             dbConnection.rollback();
             e.printStackTrace();
         } finally {
             dbConnection.close();
-            req.getRequestDispatcher(FORM).forward(req, resp);}
+            System.out.println("doPost 2");
+            req.getRequestDispatcher(FORM).forward(req, resp);
+        }
     }
 }
