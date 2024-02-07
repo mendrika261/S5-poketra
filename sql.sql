@@ -72,3 +72,18 @@ FROM v_cout_fabrication_produit JOIN v_cout_mp_produit
                                 JOIN "Format" ON "Format".id=v_cout_mp_produit.id_format
                                 JOIN "Modele" ON "Modele".id="Format"."idModele"
                                 JOIN "Style" ON "Style".id="Modele"."idStyle";
+
+CREATE VIEW "v_info_personnel" AS
+SELECT "idPersonnel" as id_personnel, "nom", "nomService" as nom_service, s."prixHoraire" as prix_horaire_base,
+       floor(extract(day from (now()-"dateAffectation"))/365) as anciennete, "dateAffectation" date_affectation
+from "Affectation" a
+JOIN "Personnel" p ON "idPersonnel" = p.id
+JOIN "Service" s ON s.id = a.idservice
+order by "dateAffectation";
+
+SELECT * FROM "v_info_personnel";
+
+SELECT nom as nom_poste, coefficient as coeff_poste, id id_poste
+FROM "Poste"
+JOIN (SELECT min(abs(5-anciennete)) as poste_anciennete
+from "Poste" p order by poste_anciennete limit 1) as min_poste on anciennete = 5-poste_anciennete

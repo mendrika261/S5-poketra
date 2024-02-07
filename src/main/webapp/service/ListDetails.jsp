@@ -42,14 +42,13 @@
                             <table id="table" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>idFormat</th>
-                                    <th>cout total</th>
-                                    <th>prix de Vente</th>
-                                    <th>Benefice</th>
-                                    <th>nom Format</th>
-                                    <th>nom Modele</th>
-                                    <th>nom style</th>
-
+                                    <th>Id Format</th>
+                                    <th>Cout total</th>
+                                    <th>Prix de Vente</th>
+                                    <th>Bénéfice</th>
+                                    <th>Format</th>
+                                    <th>Modèle</th>
+                                    <th>Style</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -70,14 +69,13 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>idFormat</th>
-                                    <th>cout total</th>
-                                    <th>prix de Vente</th>
-                                    <th>Benefice</th>
-                                    <th>nom Format</th>
-                                    <th>nom Modele</th>
-                                    <th>nom style</th>
-
+                                    <th>Id Format</th>
+                                    <th>Cout total</th>
+                                    <th>Prix de Vente</th>
+                                    <th>Bénéfice</th>
+                                    <th>Format</th>
+                                    <th>Modèle</th>
+                                    <th>Style</th>
                                 </tr>
                                 </tfoot>
                             </table>
